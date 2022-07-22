@@ -1,0 +1,172 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "eastus"
+        },
+        "osDiskType": {
+            "value": "Premium_LRS"
+        },
+        "dataDisks": {
+            "value": [
+                {
+                    "lun": 0,
+                    "createOption": "empty",
+                    "caching": "ReadWrite",
+                    "writeAcceleratorEnabled": false,
+                    "id": null,
+                    "name": "ssetRandWebappVms_DataDisk_0",
+                    "storageAccountType": "Premium_LRS",
+                    "diskSizeGB": 64,
+                    "diskIOPSReadWrite": -1,
+                    "diskMBpsReadWrite": -1,
+                    "diskEncryptionSet": null
+                }
+            ]
+        },
+        "addressPrefixes": {
+            "value": [
+                "10.2.0.0/16"
+            ]
+        },
+        "subnets": {
+            "value": [
+                {
+                    "name": "default",
+                    "properties": {
+                        "addressPrefix": "10.2.0.0/16"
+                    }
+                }
+            ]
+        },
+        "virtualNetworkId": {
+            "value": "/subscriptions/e84f9471-36de-40a0-9dd4-046e2637d47e/resourceGroups/rgScaleSetRand/providers/Microsoft.Network/virtualNetworks/rgScaleSetRand-vnet"
+        },
+        "virtualNetworkName": {
+            "value": "rgScaleSetRand-vnet"
+        },
+        "networkSecurityGroups": {
+            "value": [
+                {
+                    "name": "basicNsgrgScaleSetRand-vnet-nic01",
+                    "id": "/subscriptions/e84f9471-36de-40a0-9dd4-046e2637d47e/resourceGroups/rgScaleSetRand/providers/Microsoft.Network/networkSecurityGroups/basicNsgrgScaleSetRand-vnet-nic01",
+                    "rules": []
+                }
+            ]
+        },
+        "networkInterfaceConfigurations": {
+            "value": [
+                {
+                    "name": "rgScaleSetRand-vnet-nic01",
+                    "primary": true,
+                    "subnetId": "/subscriptions/e84f9471-36de-40a0-9dd4-046e2637d47e/resourceGroups/rgScaleSetRand/providers/Microsoft.Network/virtualNetworks/rgScaleSetRand-vnet/subnets/default",
+                    "applicationGatewayBackendAddressPools": [],
+                    "loadBalancerBackendAddressPools": [
+                        {
+                            "id": "[parameters('backendPoolId')]"
+                        }
+                    ],
+                    "applicationSecurityGroups": [],
+                    "loadBalancerInboundNatPools": [
+                        {
+                            "id": "[parameters('inboundNatPoolId')]"
+                        }
+                    ],
+                    "enableAcceleratedNetworking": true,
+                    "nsgName": "basicNsgrgScaleSetRand-vnet-nic01",
+                    "nsgId": "/subscriptions/e84f9471-36de-40a0-9dd4-046e2637d47e/resourceGroups/rgScaleSetRand/providers/Microsoft.Network/networkSecurityGroups/basicNsgrgScaleSetRand-vnet-nic01",
+                    "pipName": ""
+                }
+            ]
+        },
+        "publicIpAddressName": {
+            "value": "ssetRandWebappVms-ip"
+        },
+        "backendPoolName": {
+            "value": "bepool"
+        },
+        "backendPoolId": {
+            "value": "/subscriptions/e84f9471-36de-40a0-9dd4-046e2637d47e/resourceGroups/rgScaleSetRand/providers/Microsoft.Network/loadBalancers/ssetRandWebappVms-lb/backendAddressPools/bepool"
+        },
+        "loadBalancerName": {
+            "value": "ssetRandWebappVms-lb"
+        },
+        "inboundNatPoolId": {
+            "value": "/subscriptions/e84f9471-36de-40a0-9dd4-046e2637d47e/resourceGroups/rgScaleSetRand/providers/Microsoft.Network/loadBalancers/ssetRandWebappVms-lb/inboundNatPools/natpool"
+        },
+        "vmName": {
+            "value": "ssetRandWebappVms"
+        },
+        "virtualMachineScaleSetName": {
+            "value": "ssetRandWebappVms"
+        },
+        "singlePlacementGroup": {
+            "value": "false"
+        },
+        "instanceCount": {
+            "value": "1"
+        },
+        "instanceSize": {
+            "value": "Standard_DS1_v2"
+        },
+        "scaleInPolicy": {
+            "value": {
+                "rules": [
+                    "Default"
+                ]
+            }
+        },
+        "overprovision": {
+            "value": false
+        },
+        "upgradePolicy": {
+            "value": "Manual"
+        },
+        "adminUsername": {
+            "value": "azureuser"
+        },
+        "autoScaleDefault": {
+            "value": "1"
+        },
+        "autoScaleMin": {
+            "value": "1"
+        },
+        "autoScaleMax": {
+            "value": "2"
+        },
+        "scaleOutCPUPercentageThreshold": {
+            "value": "75"
+        },
+        "durationTimeWindow": {
+            "value": "10"
+        },
+        "scaleOutInterval": {
+            "value": "1"
+        },
+        "scaleInCPUPercentageThreshold": {
+            "value": "25"
+        },
+        "scaleInInterval": {
+            "value": "1"
+        },
+        "healthExtensionProtocol": {
+            "value": "http"
+        },
+        "healthExtensionPort": {
+            "value": 80
+        },
+        "healthExtensionRequestPath": {
+            "value": "/"
+        },
+        "autoRepairsPolicyEnabled": {
+            "value": true
+        },
+        "gracePeriod": {
+            "value": "PT10M"
+        },
+        "platformFaultDomainCount": {
+            "value": "1"
+        }
+    }
+}
